@@ -18,3 +18,6 @@ Simulations/datasets/*
 
 # Ignore all .mat files in the Results folder
 Results/*.mat
+
+# Ignore uiuc datasets provided in Releases
+Simulations/phantoms/uiuc/*

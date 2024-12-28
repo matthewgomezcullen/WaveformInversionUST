@@ -10,8 +10,15 @@ dxi = 0.15e-3; xmax = 120e-3;
 xi = -xmax:dxi:xmax; zi = xi;
 Nxi = numel(xi); Nzi = numel(zi);
 [Xi, Zi] = meshgrid(xi, zi);
-option = 2; % 1 for Breast CT; 2 for Breast MRI
-[C, c_bkgnd] = soundSpeedPhantom2D(Xi, Zi, option);
+option = 3; % 1 for Breast CT; 2 for Breast MRI; 3 for UIUC Breasts (provide ID below)
+if option == 3
+    id = 7; % UIUC id of dataset
+    X = 300; % vertically slice 3D MRI image here. 0 is typically furthest away. 
+        % Check dimensions in soundSpeedPhantomUIUC.m to ensure X is within Nx
+    [C, c_bkgnd] = soundSpeedPhantomUIUC(Xi, Zi, X, id);
+else
+    [C, c_bkgnd] = soundSpeedPhantom2D(Xi, Zi, option);
+end
 
 % Attenuation Map
 atten_bkgnd = 0.0025; % Background Attenuation [dB/(MHz^y cm)]
@@ -75,4 +82,6 @@ switch option
         save('sim_info/SimInfo_BreastCT.mat');
     case 2
         save('sim_info/SimInfo_BreastMRI.mat');
+    case 3
+        save('sim_info/SimInfo_BreastUIUC.mat');
 end

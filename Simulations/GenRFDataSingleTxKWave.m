@@ -6,12 +6,15 @@ addpath(genpath('../k-Wave'));
 addpath(genpath(pwd));
 
 % Load Simulation Information Created by GenKWaveSimInfo.m
-option = 2; % 1 for Breast CT; 2 for Breast MRI
+option = 3; % 1 for Breast CT; 2 for Breast MRI; 3 for UIUC Breasts (provide ID below)
+id = 7; % id for UIUC Breasts
 switch option
     case 1
         siminfo_filename = 'sim_info/SimInfo_BreastCT.mat';
     case 2
         siminfo_filename = 'sim_info/SimInfo_BreastMRI.mat';
+    case 3
+        siminfo_filename = 'sim_info/SimInfo_BreastUIUC.mat';
 end
 load(siminfo_filename);
 

@@ -6,17 +6,17 @@ filename = 'scratch/rf_data_tx_elem_1.mat';
 load(filename,'siminfo_filename'); 
 if strcmp(siminfo_filename, 'sim_info/SimInfo_BreastCT.mat')
     option = 1; 
+    suffix = 'CT';
 elseif strcmp(siminfo_filename, 'sim_info/SimInfo_BreastMRI.mat')
     option = 2;
+    suffix = 'MRI';
+elseif strcmp(siminfo_filename, 'sim_info/SimInfo_BreastUIUC.mat')
+    option = 3;
+    suffix = 'UIUC';
 end
 
 % Load Simulation Information Created by GenKWaveSimInfo.m
-switch option % 1 for Breast CT; 2 for Breast MRI
-    case 1
-        load('sim_info/SimInfo_BreastCT.mat');
-    case 2
-        load('sim_info/SimInfo_BreastMRI.mat');
-end
+load(siminfo_filename)
 
 % Assemble RF Data From Individual Tx Beams Into Full Synthetic Aperture
 addpath(genpath('../k-Wave'));
@@ -35,13 +35,7 @@ xi_orig = xi; yi_orig = zi;
 clearvars -except option time full_dataset transducerPositionsXY xi_orig yi_orig C atten; 
 
 % Save Full Synthetic Aperture Data
-switch option
-    case 1
-        save('datasets/kWave_BreastCT.mat', '-v7.3', ...
-            'time', 'full_dataset', 'transducerPositionsXY', ...
-            'xi_orig', 'yi_orig', 'C', 'atten');
-    case 2
-        save('datasets/kWave_BreastMRI.mat', '-v7.3', ...
-            'time', 'full_dataset', 'transducerPositionsXY', ...
-            'xi_orig', 'yi_orig', 'C', 'atten');
+save(stringf('datasets/kWave_Breast%s.mat', suffix), '-v7.3', ...
+    'time', 'full_dataset', 'transducerPositionsXY', ...
+    'xi_orig', 'yi_orig', 'C', 'atten');
 end

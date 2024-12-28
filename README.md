@@ -1,3 +1,5 @@
+*This code, forked from [rehmanali1994/WaveformInversionUST](https://github.com/rehmanali1994/WaveformInversionUST), adds support for these [breast datasets](https://anastasio.bioengineering.illinois.edu/downloadable-content/oa-breast-database/) provided by researchers at University Illinois Urbana-Champaign. Please note the instructions under [k-Wave Simulations](#k-wave-simulations)*
+
 # WaveformInversionUST
 Frequency-Domain Waveform Inversion Ultrasound Tomography (UST) Using a Ring-Array Transducer
 
@@ -45,6 +47,16 @@ In our past works, we included [k-Wave](http://www.k-wave.org/) simulated datase
 2) After generating the MAT file in [Simulations/sim_info](https://github.com/rehmanali1994/WaveformInversionUST/tree/main/Simulations/sim_info), we run the actual [k-Wave](http://www.k-wave.org/) simulation using [GenRFDataSingleTxKWave.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/GenRFDataSingleTxKWave.m). The `option` parameter corresponding to the simulation case must be specified. [GenRFDataSingleTxKWave.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/GenRFDataSingleTxKWave.m) loops through each single-element transmit. The simulated data for each transmit is then stored in MAT files in the [Simulations/scratch](https://github.com/rehmanali1994/WaveformInversionUST/tree/main/Simulations/scratch) folder.
 3) Lastly, [AssembleUSCTChannelData.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/AssembleUSCTChannelData.m) assembles the simulated data from each indivdual transmit/MAT-file in the [Simulations/scratch](https://github.com/rehmanali1994/WaveformInversionUST/tree/main/Simulations/scratch) folder into a single MAT file containing the full UST dataset in the [Simulations/datasets](https://github.com/rehmanali1994/WaveformInversionUST/tree/main/Simulations/datasets) folder: kWave_BreastCT.mat (`option = 1`); kWave_BreastMRI.mat (`option = 2`).
 
+## UIUC Datasets
+
+**Please download the datasetes (uiuc folder) under the [releases](https://github.com/matthewgomezcullen/WaveformInversionUST/releases) tab for this repository, and place that data in the [phantoms](https://github.com/matthewgomezcullen/WaveformInversionUST/tree/main/Simulations/phantoms) folder.**
+
+Please set `option = 3` and `id = <7, 35, or 47>` in [GenKWaveSimInfo.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenKWaveSimInfo.m) and [GenRFDataSingleTxKWave.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenRFDataSingleTxKWave.m).
+
+With `option = 3`, [GenKWaveSimInfo.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenKWaveSimInfo.m) will use [soundSpeedPhantomUIUC.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/phantoms/soundSpeedPhantomUIUC.m) instead of [soundSpeedPhantom2D.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/phantoms/soundSpeedPhantom2D.m) to convert the UIUC dataset of interest (expressed via the `id`) to a sound speed map.
+
+**Note:** the UIUC datasets are 3D mappings outlining the tissue types of voxels in a medium representing a breast. The provided code takes a 2D slice of the medium, taken at an x co-ordinate which is set via `X` in [GenKWaveSimInfo.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenKWaveSimInfo.m). Please use the [visualise.ipynb] code provided to produce 2D images of the breasts at varying values of `X`.
+
 # Code
 
 The key functions/classes used in the waveform inversion scripts ([MultiFrequencyWaveformInvKCI.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/MultiFrequencyWaveformInvKCI.m); [MultiFrequencyWaveformInvVSX.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/MultiFrequencyWaveformInvVSX.m); [MultiFrequencyWaveformInvkWave.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/MultiFrequencyWaveformInvkWave.m)) are: 
@@ -82,3 +94,5 @@ Each waveform inversion script ([MultiFrequencyWaveformInvkWave.m](https://githu
 6) kWave_BreastMRI.gif
 
 ![](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Results/kWave_BreastMRI.gif)
+
+**TODO:** add images for UIUC datasets.

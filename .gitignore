@@ -15,3 +15,6 @@ Simulations/datasets/*
 !Simulations/sim_info/README.md
 !Simulations/scratch/README.md
 !Simulations/datasets/README.md
+
+# Ignore all .mat files in the Results folder
+Results/*.mat

@@ -1,1 +1,17 @@
 *.DS_Store
+
+# Ignore everything in the SampleData folder
+SampleData/*
+
+# Exclude README.md from being ignored
+!SampleData/README.md
+
+# Ignore everything in the processing directories
+Simulations/sim_info/*
+Simulations/scratch/*
+Simulations/datasets/*
+
+# Exclude README.md from being ignored in those directories
+!Simulations/sim_info/README.md
+!Simulations/scratch/README.md
+!Simulations/datasets/README.md

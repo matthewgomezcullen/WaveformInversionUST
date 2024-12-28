@@ -55,7 +55,7 @@ Please set `option = 3` and `id = <7, 35, or 47>` in [GenKWaveSimInfo.m](https:/
 
 With `option = 3`, [GenKWaveSimInfo.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenKWaveSimInfo.m) will use [soundSpeedPhantomUIUC.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/phantoms/soundSpeedPhantomUIUC.m) instead of [soundSpeedPhantom2D.m](https://github.com/rehmanali1994/WaveformInversionUST/blob/main/Simulations/phantoms/soundSpeedPhantom2D.m) to convert the UIUC dataset of interest (expressed via the `id`) to a sound speed map.
 
-**Note:** the UIUC datasets are 3D mappings outlining the tissue types of voxels in a medium representing a breast. The provided code takes a 2D slice of the medium, taken at an x co-ordinate which is set via `X` in [GenKWaveSimInfo.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenKWaveSimInfo.m). Please use the [visualise.ipynb] code provided to produce 2D images of the breasts at varying values of `X`.
+**Note:** the UIUC datasets are 3D mappings outlining the tissue types of voxels in a medium representing a breast. The provided code takes a 2D slice of the medium, taken at an x co-ordinate which is set via `X` in [GenKWaveSimInfo.m](https://github.com/matthewgomezcullen/WaveformInversionUST/blob/main/Simulations/GenKWaveSimInfo.m). Please use the [visualise.ipynb](https://github.com/matthewgomezcullen/WaveformInversionUST/tree/main/visualise.ipynb) code provided to produce 2D images of the breasts at varying values of `X`.
 
 # Code
 

@@ -4,13 +4,13 @@ clc
 % Figure out which simulation was run
 filename = 'scratch/rf_data_tx_elem_1.mat'; 
 load(filename,'siminfo_filename'); 
-if strcmp(siminfo_filename, 'sim_info/SimInfo_BreastCT.mat')
+if strcmp(siminfo_filename, 'WaveformInversionUST/Simulations/sim_info/SimInfo_BreastCT.mat')
     option = 1; 
     suffix = 'CT';
-elseif strcmp(siminfo_filename, 'sim_info/SimInfo_BreastMRI.mat')
+elseif strcmp(siminfo_filename, 'WaveformInversionUST/Simulations/sim_info/SimInfo_BreastMRI.mat')
     option = 2;
     suffix = 'MRI';
-elseif strcmp(siminfo_filename, 'sim_info/SimInfo_BreastUIUC.mat')
+elseif strcmp(siminfo_filename, 'WaveformInversionUST/Simulations/sim_info/SimInfo_BreastUIUC.mat')
     option = 3;
     suffix = 'UIUC';
 end
@@ -19,7 +19,6 @@ end
 load(siminfo_filename)
 
 % Assemble RF Data From Individual Tx Beams Into Full Synthetic Aperture
-addpath(genpath('../k-Wave'));
 dwnsmp = 5; % Subsample in Time
 full_dataset = zeros(numel(kgrid.t_array(1:dwnsmp:end)), ...
     numElements, numElements, 'single');

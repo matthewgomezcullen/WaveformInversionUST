@@ -2,8 +2,8 @@ clear
 clc
 
 % Load Functions
-addpath(genpath('../../k-Wave'));
-addpath(genpath(pwd));
+% addpath(genpath('../../k-Wave'));
+% addpath(genpath(pwd));
 
 % Sound Speed Map 
 dxi = 0.15e-3; xmax = 120e-3;
@@ -46,7 +46,8 @@ medium.alpha_coeff = atten; % [dB/(MHz^y cm)]
 medium.alpha_power = y_atten; % cannot exactly equal 1 without:
                               % medium.alpha_mode = 'no_dispersion'
 medium.alpha_mode = 'no_dispersion'; % IGNORE VELOCITY DISPERSION!
-kgrid = makeGrid(Nzi, dxi, Nxi, dxi); % K-Space Grid Object
+kgrid = kWaveGrid(Nzi, dxi, Nxi, dxi);
+% kgrid = makeGrid(Nzi, dxi, Nxi, dxi); % K-Space Grid Object
 
 % Create Time Array
 t_end = 1.3 * Nzi * dxi / min(C(:)); cfl = 0.3;
@@ -77,11 +78,12 @@ input_args = {'DisplayMask', display_mask, 'PMLInside', false, ...
     'PlotPML', false, 'PMLAlpha', 10, 'PlotSim', false, 'DataCast', 'gpuArray-single'};
 
 % Save Simulation Info to File
+
 switch option
     case 1
-        save('sim_info/SimInfo_BreastCT.mat');
+        save('WaveformInversionUST/Simulations/sim_info/SimInfo_BreastCT.mat');
     case 2
-        save('sim_info/SimInfo_BreastMRI.mat');
+        save('WaveformInversionUST/Simulations/sim_info/SimInfo_BreastMRI.mat');
     case 3
-        save('sim_info/SimInfo_BreastUIUC.mat');
+        save('WaveformInversionUST/Simulations/sim_info/SimInfo_BreastUIUC.mat');
 end

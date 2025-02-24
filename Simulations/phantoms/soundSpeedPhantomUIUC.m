@@ -1,4 +1,4 @@
-function [C, c_bkgnd] = soundSpeedPhantom2D(Yi, Zi, X, id)
+function [C, c_bkgnd] = soundSpeedPhantomUIUC(Yi, Zi, X, id)
 %SOUNDSPEEDPHANTOM Outputs Sound Speed Phantom
 % [C, c_bkgnd] = soundSpeedPhantom(Xi, Yi, option)
 % INPUTS:
@@ -22,7 +22,7 @@ switch id
 end
 
 % Load in optical and acoustic phantoms
-fid = fopen(sprintf('./phantoms/uiuc/%d.DAT', id), 'r');
+fid = fopen(sprintf('WaveformInversionUST/Simulations/phantoms/uiuc/%d.DAT', id), 'r');
 phan = fread(fid, 'uint8=>uint8'); phan = reshape(phan, [Nx, Ny, Nz]);
 fclose(fid);
 
